@@ -16,10 +16,10 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
-import arb.model.person.Email;
-import arb.model.person.Name;
-import arb.model.person.Person;
-import arb.model.person.Phone;
+import arb.model.client.Client;
+import arb.model.client.Email;
+import arb.model.client.Name;
+import arb.model.client.Phone;
 import arb.model.tag.Tag;
 
 /**
@@ -46,9 +46,9 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, tagList);
+        Client client = new Client(name, phone, email, tagList);
 
-        return new AddClientCommand(person);
+        return new AddClientCommand(client);
     }
 
     /**

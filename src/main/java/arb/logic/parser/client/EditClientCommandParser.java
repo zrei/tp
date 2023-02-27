@@ -14,7 +14,7 @@ import java.util.Set;
 
 import arb.commons.core.index.Index;
 import arb.logic.commands.client.EditClientCommand;
-import arb.logic.commands.client.EditClientCommand.EditPersonDescriptor;
+import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.parser.ArgumentMultimap;
 import arb.logic.parser.ArgumentTokenizer;
 import arb.logic.parser.Parser;
@@ -46,23 +46,23 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
                     EditClientCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditClientDescriptor editClientDescriptor = new EditClientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editClientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editClientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editClientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditClientCommand(index, editPersonDescriptor);
+        return new EditClientCommand(index, editClientDescriptor);
     }
 
     /**

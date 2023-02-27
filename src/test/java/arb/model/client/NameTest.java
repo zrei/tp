@@ -1,4 +1,4 @@
-package arb.model.person;
+package arb.model.client;
 
 import static arb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

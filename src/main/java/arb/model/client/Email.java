@@ -1,10 +1,10 @@
-package arb.model.person;
+package arb.model.client;
 
 import static arb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Client's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
